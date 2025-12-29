@@ -1,0 +1,271 @@
+
+{
+  "name": "AI Constitution for Python Application Code Development (Agent Self-Check)",
+  "version": "1.0",
+  "purpose": "Operational best-practice rules the AI agent must follow and continuously verify while generating, modifying, and reviewing Python application code.",
+  "policy": {
+    "0_operating_mode": {
+      "rules": [
+        "WORK_INCREMENTALLY: Implement features in small, reviewable steps.",
+        "KEEP_CHANGELOG: Track changes and rationale for each step.",
+        "NO_UNVERIFIED_ASSUMPTIONS: Ask for missing details; do not invent behavior."
+      ]
+    },
+    "1_planning_and_design": {
+      "rules": [
+        "DEFINE_REQUIREMENTS: Summarize functional and non-functional requirements for the current task.",
+        "SELECT_ARCHITECTURE: Choose a suitable pattern (script, CLI, package, service, plugin) and state why.",
+        "MODULE_BOUNDARIES: Identify modules, their responsibilities, inputs/outputs, and interfaces.",
+        "DATA_FLOW_MAP: Describe sources, transformations, and sinks for data handled by this feature."
+      ],
+      "self_check": [
+        "Is the chosen architecture appropriate for scale, deployment, and integration?",
+        "Are module responsibilities single-purpose and non-overlapping?",
+        "Are external dependencies and integrations clearly listed?"
+      ]
+    },
+    "2_environment_and_dependencies": {
+      "rules": [
+        "USE_VENV: Require a Python virtual environment.",
+        "PIN_DEPENDENCIES: Specify exact versions where stability is critical.",
+        "SAFE_LIBS: Prefer standard library first; then well-maintained, widely-used packages.",
+        "RECORD_REQUIREMENTS: Maintain requirements file and update on change.",
+        "CHECK_LICENSES: Ensure dependency licenses are compatible with project use."
+      ],
+      "self_check": [
+        "Is a virtual environment assumed and documented?",
+        "Are all imports present in the dependency record?",
+        "Are risky or unmaintained libraries avoided or justified?"
+      ]
+    },
+    "3_style_and_readability": {
+      "rules": [
+        "PEP8_COMPLIANCE: Enforce naming, formatting, and whitespace.",
+        "PYTHONIC_PRACTICES: Prefer clarity over cleverness, explicit over implicit.",
+        "SMALL_FUNCTIONS: Keep functions short with single responsibility.",
+        "LIMIT_NESTING: Reduce deep nesting via helpers, early returns, and guard clauses.",
+        "DOCSTRINGS_REQUIRED: Add docstrings for modules, classes, functions with params/returns/side-effects.",
+        "MEANINGFUL_NAMES: Use descriptive identifiers; avoid abbreviations unless standard."
+      ],
+      "self_check": [
+        "Are all public callables documented?",
+        "Is cyclomatic complexity reasonable (low) for each function?",
+        "Is intent clear without excessive comments?"
+      ]
+    },
+    "4_error_handling_and_resilience": {
+      "rules": [
+        "EXPLICIT_EXCEPTIONS: Catch specific exceptions; avoid blanket except.",
+        "FAIL_FAST_WHERE_SAFE: Validate inputs early; raise informative errors.",
+        "NO_SILENT_FAILURES: Log or raise; do not swallow exceptions.",
+        "RETRY_POLICIES: For transient external calls, implement bounded retries with backoff.",
+        "TIMEOUTS: Set timeouts for I/O and network operations."
+      ],
+      "self_check": [
+        "Are error messages actionable and context-rich?",
+        "Are exception paths tested?",
+        "Are retries bounded and instrumented?"
+      ]
+    },
+    "5_security_and_privacy": {
+      "rules": [
+        "NO_SECRETS_IN_CODE: Never hardcode credentials, tokens, keys.",
+        "USE_CONFIG_SECRETS: Read secrets from environment or secure vault.",
+        "INPUT_SANITIZATION: Validate and sanitize external inputs.",
+        "LEAST_PRIVILEGE: Request only necessary permissions.",
+        "CRYPTO_STANDARDS: Use established libraries for hashing/encryption; avoid homegrown crypto.",
+        "LOG_SCRUBBING: Ensure logs avoid sensitive data."
+      ],
+      "self_check": [
+        "Are secrets externalized and documented?",
+        "Are data validation and schema checks present?",
+        "Do logs omit PII and credentials?"
+      ]
+    },
+    "6_testing_quality_assurance": {
+      "rules": [
+        "UNIT_TESTS: Provide unit tests for functions/classes with edge cases.",
+        "INTEGRATION_TESTS: Add tests for interactions with files, DBs, services.",
+        "ISOLATE_SIDE_EFFECTS: Use fakes/mocks for external systems.",
+        "COVERAGE_TARGET: Aim for high coverage on critical modules; justify gaps.",
+        "REPRODUCIBLE_TESTS: Ensure deterministic tests with fixed seeds where applicable."
+      ],
+      "self_check": [
+        "Do tests cover success, error, and boundary cases?",
+        "Is mocking used appropriately to avoid network or filesystem reliance?",
+        "Is the test suite fast enough to run frequently?"
+      ]
+    },
+    "7_logging_and_observability": {
+      "rules": [
+        "STRUCTURED_LOGGING: Use standard logging with consistent format/levels.",
+        "CONTEXTUAL_LOGS: Include correlation IDs or request context when available.",
+        "NO_SPAM: Avoid excessive debug noise; make logs actionable.",
+        "METRICS_OPTIONAL: For services, expose basic metrics (latency, throughput, errors)."
+      ],
+      "self_check": [
+        "Are logs present on key branches (success/failure)?",
+        "Are log levels appropriate (INFO/WARN/ERROR)?",
+        "Is sensitive data excluded from logs?"
+      ]
+    },
+    "8_configuration_management": {
+      "rules": [
+        "TWELVE_FACTOR_CONFIG: Store configuration in environment or config files, not code.",
+        "DEFAULTS_AND_OVERRIDES: Provide safe defaults with override capability.",
+        "VALIDATE_CONFIG: Validate config at startup; fail fast on invalid config."
+      ],
+      "self_check": [
+        "Are all config values documented and validated?",
+        "Is the application behavior reproducible under default config?"
+      ]
+    },
+    "9_data_management": {
+      "rules": [
+        "SCHEMA_CLARITY: Define input/output schemas for structured data.",
+        "SAFE_IO: Use context managers for files; handle encoding explicitly.",
+        "PANDAS_PRACTICES: Avoid implicit type changes; document dtypes and index assumptions.",
+        "MEMORY_AWARE: Use streaming/chunking for large data."
+      ],
+      "self_check": [
+        "Are schemas or contracts specified and enforced?",
+        "Are large-file operations memory-aware and robust?"
+      ]
+    },
+    "10_performance_and_efficiency": {
+      "rules": [
+        "ALGORITHM_CHOICE: Prefer efficient data structures and algorithms.",
+        "PROFILE_WHEN_NEEDED: Profile hotspots before optimizing prematurely.",
+        "AVOID_MICRO_OPTIMIZATION: Prioritize readability until profiling indicates bottlenecks."
+      ],
+      "self_check": [
+        "Is performance adequate for stated requirements?",
+        "Were optimizations justified by profiling evidence?"
+      ]
+    },
+    "11_version_control_and_branching": {
+      "rules": [
+        "SMALL_COMMITS: Make atomic commits with descriptive messages.",
+        "BRANCH_STRATEGY: Use feature branches; keep main stable.",
+        "CODE_REVIEWS: Seek review for non-trivial changes and address feedback."
+      ],
+      "self_check": [
+        "Does each change set have a clear purpose?",
+        "Are breaking changes isolated and documented?"
+      ]
+    },
+    "12_packaging_and_structure": {
+      "rules": [
+        "PACKAGE_LAYOUT: Use a standard package structure (src/ or top-level package).",
+        "ENTRY_POINTS: Provide clear CLI or module entry points.",
+        "SETUP_FILES: Include build/packaging metadata where needed."
+      ],
+      "self_check": [
+        "Is the project importable without side effects?",
+        "Are entry points documented and tested?"
+      ]
+    },
+    "13_ci_cd_and_automation": {
+      "rules": [
+        "AUTO_TEST: Run tests on every change (locally or CI).",
+        "LINT_AND_FORMAT: Enforce style with linters/formatters.",
+        "SECURITY_SCANS: Run dependency and secret scans when available."
+      ],
+      "self_check": [
+        "Do automated checks pass consistently?",
+        "Are failures actionable with clear messages?"
+      ]
+    },
+    "14_documentation_and_examples": {
+      "rules": [
+        "README_REQUIRED: Provide quickstart, prerequisites, usage examples.",
+        "API_DOCS: Document public APIs and expected behaviors.",
+        "CHANGELOG: Record notable changes and migration notes."
+      ],
+      "self_check": [
+        "Can a new developer run and understand the project quickly?",
+        "Are examples up to date with current interfaces?"
+      ]
+    },
+    "15_release_and_deployment": {
+      "rules": [
+        "VERSIONING: Use semantic versioning where applicable.",
+        "RELEASE_NOTES: Publish changes, risks, and roll-back steps.",
+        "ROLLBACK_PLAN: Define how to revert safely."
+      ],
+      "self_check": [
+        "Is the release reproducible?",
+        "Are deployment and rollback steps documented?"
+      ]
+    },
+    "16_maintenance_and_support": {
+      "rules": [
+        "BUG_TRACKING: Log defects with reproduction steps and severity.",
+        "DEPRECATION_POLICY: Mark deprecated APIs and provide timelines.",
+        "HOUSEKEEPING: Remove dead code, TODOs resolved, and stale dependencies."
+      ],
+      "self_check": [
+        "Are open issues triaged and prioritized?",
+        "Is technical debt identified and planned?"
+      ]
+    }
+  },
+  "progress_checks": {
+    "gate_A_design_ready": [
+      "Requirements summarized and agreed.",
+      "Architecture documented with module boundaries.",
+      "Data flow and external dependencies identified."
+    ],
+    "gate_B_implementation_ready": [
+      "Environment and dependencies defined and recorded.",
+      "Code templates scaffolded with docstrings and tests.",
+      "Configuration and secrets strategy specified."
+    ],
+    "gate_C_feature_complete": [
+      "Unit/integration tests passing; coverage acceptable for critical modules.",
+      "Error handling verified; no silent failures.",
+      "Logging present with appropriate levels; sensitive data excluded."
+    ],
+    "gate_D_quality_review": [
+      "PEP8/lint checks pass; complexity within bounds.",
+      "Security review: no hardcoded secrets, input validation present.",
+      "Performance acceptable or optimization plan documented with profiling evidence."
+    ],
+    "gate_E_release_ready": [
+      "README and API docs updated; examples run successfully.",
+      "Version bumped; release notes and rollback plan prepared.",
+      "CI pipeline green; packaging/build reproducible."
+    ]
+  },
+  "violations_and_responses": {
+    "on_violation": [
+      "HALT_CHANGE: Stop further code generation for the violating area.",
+      "ANNOTATE: Explain the violation and reference the relevant rule.",
+      "REMEDIATE: Propose and apply a compliant change.",
+      "REVERIFY: Run applicable self-checks and tests before proceeding."
+    ],
+    "non_overridable_rules": [
+      "NO_SECRETS_IN_CODE",
+      "NO_SILENT_FAILURES",
+      "PEP8_COMPLIANCE",
+      "DOCSTRINGS_REQUIRED",
+      "UNIT_TESTS",
+      "STRUCTURED_LOGGING",
+      "TWELVE_FACTOR_CONFIG"
+    ]
+  },
+  "final_self_audit": {
+    "questions": [
+      "Is the feature implemented with clear, documented interfaces?",
+      "Are tests comprehensive and deterministic?",
+      "Are errors handled explicitly and logged appropriately?",
+      "Is configuration externalized and validated at startup?",
+      "Are dependencies pinned/justified and license-compatible?",
+      "Is code readable, modular, and following PEP8?",
+      "Can a new contributor run the project using the README alone?",
+      "Is the release reproducible with a rollback plan?",
+      "Is technical debt noted and scheduled for remediation?"
+    ],
+    "on_failure": "PAUSE and produce a specific remediation plan before proceeding."
+  }
+}
