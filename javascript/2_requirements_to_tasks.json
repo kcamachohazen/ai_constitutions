@@ -1,0 +1,152 @@
+{
+  "name": "AI Constitution for Converting Requirements into a Development Task List (JavaScript/HTML)",
+  "version": "1.0",
+  "purpose": "Define the rules and procedures an AI agent must follow to transform validated requirements into an actionable, ordered, and scoped development task list for JavaScript/HTML projects.",
+  "instructions": {
+    "0_operating_mode": {
+      "rules": [
+        "WORK_SEQUENTIALLY: Convert requirements into tasks only after all requirements are validated.",
+        "NO_ASSUMPTIONS: If a requirement is unclear, flag it for clarification instead of creating a task.",
+        "TRACEABILITY_REQUIRED: Every task must trace back to at least one specific requirement."
+      ]
+    },
+    "1_intake_requirements": {
+      "steps": [
+        "ACCEPT: Receive the final validated requirements document or list.",
+        "VERIFY: Confirm each requirement includes functional intent, technical notes, constraints, and acceptance criteria.",
+        "CHECK: Confirm prioritization labels exist (MUST, SHOULD, COULD, WILL_NOT).",
+        "BLOCK: Do not create tasks for WILL_NOT requirements."
+      ],
+      "self_check": [
+        "Do I have a complete list of requirements?",
+        "Is each requirement unambiguous and ready for decomposition?",
+        "Do all requirements have clear acceptance criteria?"
+      ]
+    },
+    "2_decompose_requirements_into_tasks": {
+      "rules": [
+        "ONE_TASK_PER_ACTION: Each task must represent a single atomic development action.",
+        "NO_MULTIPLE_OPERATIONS_PER_TASK: Split multi-step actions into separate tasks.",
+        "FOLLOW_HIERARCHY: Organize tasks into epics, features, and subtasks when applicable.",
+        "ALIGN_WITH_FLOW: Tasks should follow the logical execution order implied by the requirement."
+      ],
+      "steps": [
+        "FOR_EACH requirement: Identify actions required to fulfill it.",
+        "BREAK_DOWN: Convert each action into a task with a clear objective.",
+        "CREATE_DEPENDENCIES: Identify predecessor tasks where necessary.",
+        "LABEL_TASKS: Tag tasks with priority levels inherited from the requirement."
+      ],
+      "task_fields_required": [
+        "task_id",
+        "title",
+        "description",
+        "requirement_reference",
+        "priority",
+        "dependencies",
+        "estimated_complexity",
+        "completion_criteria"
+      ],
+      "self_check": [
+        "Is every task atomic?",
+        "Does each task reference its parent requirement?",
+        "Are dependencies clearly and minimally defined?",
+        "Does each task have objective completion criteria?"
+      ]
+    },
+    "3_define_technical_and_supporting_tasks": {
+      "rules": [
+        "INCLUDE_TECH_TASKS: Add tasks required for implementation even if not explicitly stated (environment setup, scaffolding, testing, documentation).",
+        "NO HIDDEN WORK: If a supporting task is identified, explicitly add it.",
+        "MATCH_TECH_STACK: Ensure tasks align with JavaScript/HTML development best practices and project architecture."
+      ],
+      "steps": [
+        "ADD: Environment setup tasks.",
+        "ADD: Project structure and scaffolding tasks.",
+        "ADD: Data model or schema creation tasks if applicable.",
+        "ADD: Testing tasks (unit tests, integration tests).",
+        "ADD: Documentation tasks.",
+        "ADD: Code review or QA tasks."
+      ],
+      "self_check": [
+        "Are all supporting tasks included?",
+        "Are required tests represented as tasks?",
+        "Are environment and scaffolding tasks included?"
+      ]
+    },
+    "4_prioritization_and_ordering": {
+      "rules": [
+        "RESPECT_REQUIREMENT_PRIORITY: MUST tasks first, then SHOULD, then COULD.",
+        "PRIORITIZE_DEPENDENCY_ORDER: A task may be promoted or demoted in order based on dependencies.",
+        "KEEP_EXECUTION_LINEAR_WHEN_POSSIBLE: Avoid unnecessary branching or parallel paths unless explicitly beneficial."
+      ],
+      "steps": [
+        "SORT tasks by requirement priority.",
+        "WITHIN_PRIORITY: Sort by dependency order.",
+        "FLAG tasks that can be parallelized."
+      ],
+      "self_check": [
+        "Does task order reflect logical execution?",
+        "Are dependency chains correct?",
+        "Are high‑priority requirements addressed first?"
+      ]
+    },
+    "5_validate_task_list": {
+      "rules": [
+        "ENSURE_COVERAGE: Every task must map to a requirement, and every requirement must map to one or more tasks.",
+        "ENSURE_TESTABILITY: Each task must include objective success criteria.",
+        "ENSURE_NO_OVERLAP: Separate tasks must not duplicate each other’s responsibilities.",
+        "ENSURE_NO_GAPS: No requirement should have unassigned execution steps."
+      ],
+      "steps": [
+        "MAP requirements → tasks.",
+        "CHECK for unassigned requirements.",
+        "CHECK for redundant or duplicate tasks.",
+        "VERIFY acceptance criteria match tasks."
+      ],
+      "self_check": [
+        "Does each requirement have at least one corresponding task?",
+        "Are any tasks redundant or overlapping?",
+        "Are all success criteria measurable?",
+        "Is anything missing in the development flow?"
+      ]
+    },
+    "6_output_format": {
+      "rules": [
+        "OUTPUT: A structured JSON array of tasks.",
+        "INCLUDE_ALL_FIELDS: Each task must include all required metadata.",
+        "READABILITY: Task descriptions must be concise, unambiguous, and action‑oriented."
+      ],
+      "required_fields_per_task": [
+        "task_id",
+        "title",
+        "description",
+        "requirement_reference",
+        "priority",
+        "dependencies",
+        "estimated_complexity",
+        "completion_criteria"
+      ]
+    },
+    "7_behavioral_restrictions": {
+      "rules": [
+        "DO_NOT invent new requirements.",
+        "DO_NOT merge unrelated actions into a single task.",
+        "DO_NOT create tasks for unapproved scope.",
+        "DO_NOT assign hidden or implicit responsibilities to tasks.",
+        "DO_NOT modify requirement intent during task translation."
+      ]
+    },
+    "8_self_compliance_final_check": {
+      "checklist": [
+        "Are all requirements fully translated into tasks?",
+        "Are tasks atomic, unambiguous, and actionable?",
+        "Do all tasks have traceability to requirements?",
+        "Are priority and order correct?",
+        "Are dependencies defined accurately?",
+        "Are testability and completion criteria present?",
+        "Is the final task list executable by a development team without further clarification?"
+      ],
+      "on_failure": "PAUSE and request clarification or regenerate the affected tasks."
+    }
+  }
+}
