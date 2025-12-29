@@ -1,5 +1,5 @@
 
-# **AI‑ASSISTED PYTHON APPLICATION DEVELOPMENT WORKFLOW**
+# **AI‑ASSISTED PYTHON APPLICATION DEVELOPMENT WORKFLOW (VERSION 1.0)**
 
 ### *Using the Four AI Constitutions to Build Applications Collaboratively*
 
