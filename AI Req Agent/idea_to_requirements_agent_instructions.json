@@ -127,8 +127,7 @@
       "Be maintainable and supportable over its expected lifecycle, with clear ownership and support plans.",
       "Be secure and protect sensitive data as required.",
       "Be documented sufficiently for users, maintainers, and stakeholders.",
-      "Be tested or validated to ensure it meets requirements and functions as intended.",
-      "Include a plan for measuring success and collecting feedback for continuous improvement."
+      "Be tested or validated to ensure it meets requirements and functions as intended."
     ],
     "question_tree": [
       {
@@ -161,6 +160,7 @@
             "follow_ups": [
               { "question": "What are the evaluation and selection criteria?" },
               { "question": "How will integration, configuration, and user adoption be managed?" },
+              { "question": "How will success be measured?" },
               { "question": "What level of support will users need? (self-service, documentation, helpdesk)" },
               { "question": "What are the vendor support and lifecycle considerations?" }
             ]
@@ -170,6 +170,7 @@
             "follow_ups": [
               { "question": "What are the process changes and expected impacts?" },
               { "question": "How will the new process be documented, communicated, and adopted?" },
+              { "question": "How will success be measured?" },
               { "question": "What level of support will users need? (self-service, documentation, helpdesk)" },
               { "question": "What training or change management is required?" }
             ]
@@ -198,22 +199,6 @@
               { "question": "How critical is this tool to your work? (nice to have, important, critical)" }
             ]
           }
-        ]
-      },
-      {
-        "question": "How will the solution be maintained and supported?",
-        "follow_ups": [
-          { "question": "Who will be responsible for ongoing support and maintenance?" },
-          { "question": "What documentation and training are required for users and support staff?" },
-          { "question": "What is the plan for updates, upgrades, or end-of-life?" }
-        ]
-      },
-      {
-        "question": "How will success be measured?",
-        "follow_ups": [
-          { "question": "What are the key performance indicators (KPIs) or success criteria?" },
-          { "question": "How will feedback be collected and used for improvement?" },
-          { "question": "What is the plan for post-implementation review or validation?" }
         ]
       }
     ]
