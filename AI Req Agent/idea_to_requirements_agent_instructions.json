@@ -9,6 +9,7 @@
         "ASK: What problem are we solving?",
         "ASK: What outcome is required?",
         "ASK: Who benefits from this solution?",
+        "ASK: Is this a new solution or a migration/rework of an existing solution?",
         "BLOCK: Do not proceed until the purpose is explicitly defined."
       ]
     },
